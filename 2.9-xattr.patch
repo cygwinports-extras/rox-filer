@@ -1,0 +1,19 @@
+--- origsrc/rox-filer-2.9/ROX-Filer/src/xtypes.c	2009-05-10 07:22:54.000000000 -0500
++++ src/rox-filer-2.9/ROX-Filer/src/xtypes.c	2009-08-11 01:18:36.616270300 -0500
+@@ -59,12 +59,16 @@ void xattr_init(void)
+ {
+ 	void *libc;
+ 	
++#if defined(__CYGWIN__)
++	libc = dlopen("cygwin1.dll", RTLD_LAZY);
++#else
+ 	libc = dlopen("libc.so.6", RTLD_LAZY | RTLD_NOLOAD);
+ 	if (!libc)
+ 	{
+ 		/* Try a different name for uClib support */
+ 		libc = dlopen("libc.so", RTLD_LAZY | RTLD_NOLOAD);
+ 	}
++#endif
+ 
+ 	if (!libc)
+ 		return;	/* Give up on xattr support */

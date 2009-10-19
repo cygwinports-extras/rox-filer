@@ -1,0 +1,16 @@
+ORIG_PN=${PN}
+inherit rox
+
+SRC_URI="mirror://sourceforge/rox/${P}.tar.bz2"
+PATCH_URI="2.9-xattr.patch"
+
+ROX_APP="ROX-Filer"
+ROX_WRAPPER="rox"
+
+src_install() {
+	cd ${B}
+	rox_install
+
+	exeinto /usr/lib/rox/${ROX_APP}/Choices/MIME-types
+	doexe Choices/MIME-types/*
+}
