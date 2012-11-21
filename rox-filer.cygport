@@ -1,0 +1,24 @@
+inherit rox
+
+NAME="rox-filer"
+VERSION=2.11
+RELEASE=1
+CATEGORY="ROX X11"
+SUMMARY="ROX file manager"
+DESCRIPTION="ROX-Filer is a simple and easy to use graphical file manager for
+X11. It is also the core component of the ROX Desktop, a RISC-OS like
+environment based on drag-and-drop."
+SRC_URI="mirror://sourceforge/rox/rox-filer-${VERSION}.tar.bz2"
+SRC_DIR="rox-filer-${VERSION}"
+PATCH_URI="2.9-xattr.patch"
+
+ROX_APP="ROX-Filer"
+ROX_WRAPPER="rox"
+
+src_install() {
+	cd ${B}
+	rox_install
+
+	exeinto /usr/lib/rox/${ROX_APP}/Choices/MIME-types
+	doexe Choices/MIME-types/*
+}
