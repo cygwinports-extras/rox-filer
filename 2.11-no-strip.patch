@@ -1,0 +1,13 @@
+--- origsrc/rox-filer-2.11/ROX-Filer/src/Makefile.in	2011-10-09 09:31:59.000000000 -0500
++++ src/rox-filer-2.11/ROX-Filer/src/Makefile.in	2013-06-23 21:26:08.324933200 -0500
+@@ -47,10 +47,6 @@ OBJECTS = abox.o action.o appinfo.o appm
+ ${PROG}: ${OBJECTS}
+ 	${CC} -o "${PROG}" ${OBJECTS} ${LDFLAGS}
+ 	mv "${PROG}" "${PLATFORM_DIR}"
+-	-(cd "${PLATFORM_DIR}" && \
+-	 objcopy --only-keep-debug ROX-Filer ROX-Filer.dbg && \
+-	 strip ROX-Filer && \
+-	 objcopy --add-gnu-debuglink=ROX-Filer.dbg ROX-Filer)
+ 
+ clean:
+ 	rm -f *.o Makefile.bak
